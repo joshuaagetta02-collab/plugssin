@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1, user-scalable=no">
+    <title>Akrivi Guideit</title>
+    <link rel="stylesheet" href="css/plus-jakarta-sans.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark.css">
+
+    <!-- <script>
+        if (typeof module === 'object') {
+            window.nodeModule = module;
+            module = undefined;
+        }
+    </script> -->
+
+    <script src="js/CSinterface.js"></script>
+    <script type="text/javascript" src="js/turboactivate.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+  <div id="startplugin" style="display: none;">
+    <div class="header">
+        <div class="left"><!-- empty --></div>
+        <div class="center">
+            <img src="assets/logo.png" height="20" alt="Logo">
+        </div>
+        <div class="right">
+            <button id="resetIt" onclick="resetData()">
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="center bgg">
+            <img src="assets/Aa.svg" height="11"> &nbsp; Brand Guidelines Generator
+        </div>
+        <ul class="tabs">
+            <li id="tab_1" onclick="setTab(1)" class="active">Brand Assets</li>
+            <li id="tab_2" onclick="setTab(2)">Templates</li>
+        </ul>
+        <div class="column active" id="tabContent_1">
+            <ul class="selection">
+                <li id="logomark" class="notSelected" style="background-image:url('assets/setLogomark.svg')">
+                    <button class="set" onclick="setLogo('logomark')">Set Logomark</button>
+                    <button class="delIcon" onclick="delItem('logomark')"></button>
+                    <!-- 'background-image', 'url(' + result.msg.replace('\/', '\/\/') + ')' -->
+                </li>
+                <li id="logotype" class="notSelected" style="background-image:url('assets/setLogotype.svg')">
+                    <button class="set" onclick="setLogo('logotype')">Set Logotype</button>
+                    <button class="delIcon" onclick="delItem('logotype')"></button>
+                </li>
+                <li id="fulllogo" class="notSelected" style="background-image:url('assets/setFulllogo.svg')">
+                    <button class="set" onclick="setLogo('fulllogo')">Set Full Logo</button>
+                    <button class="delIcon" onclick="delItem('fulllogo')"></button>
+                </li>
+            </ul>
+            <div class="heading">Name</div>
+            <input type="text" name="brandname" id="brandname" oninput="recordName(event)" value=""
+                placeholder="Name here...">
+            <div class="heading bottomBorder">Fonts</div>
+            <div class="subHeading">Header Font</div>
+            <div class="fontArea" id="headerfont">
+                <div class="selectedFont">
+                    <input type="text" placeholder="Select Header Font" id="headerFontSelect" >
+                    <span class="search"></span>
+                    <input type="hidden"  id="headerFontHidden">
+                </div>
+                <ul class="listFonts" id="headerFontList">
+                    Stand by... Populating...
+                </ul>
+            </div>
+
+            <div class="subHeading">Subheader Font</div>
+            <div class="fontArea" id="subheaderfont">
+                <div class="selectedFont">
+                    <input type="text" placeholder="Select Subheader Font" id="subheaderFontSelect">
+                    <span class="search"></span>
+                    <input type="hidden"  id="subheaderFontHidden">
+                </div>
+                <ul class="listFonts" id="subheaderFontList">
+                    Stand by... Populating...
+                </ul>
+            </div>
+            <div class="subHeading">Body Font</div>
+            <div class="fontArea" id="bodyfont">
+                <div class="selectedFont">
+                    <input type="text" placeholder="Select Body Font" id="bodyFontSelect">
+                    <span class="search"></span>
+                    <input type="hidden"  id="bodyFontHidden">
+                </div>
+                <ul class="listFonts" id="bodyFontList">
+                    Stand by... Populating...
+                </ul>
+            </div>
+            <div class="heading bottomBorder">Colors</div>
+            <div class="allColors">
+                <div class="left">
+                    <div class="acolor">
+                        <div class="subHeading">Primary Color</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="primary"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="primaryInput" />
+                        </div>
+                    </div>
+                    <div class="acolor">
+                        <div class="subHeading">Secondary Color</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="secondary"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="secondaryInput" />
+                        </div>
+                    </div>
+                    <div class="acolor">
+                        <div class="subHeading">Teritary Color</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="tertiary"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="tertiaryInput" />
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="acolor">
+                        <div class="subHeading">Additional Color 1</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="additional1"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="additional1Input" />
+                        </div>
+                    </div>
+                    <div class="acolor">
+                        <div class="subHeading">Additional Color 2</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="additional2"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="additional2Input" />
+                        </div>
+                    </div>
+                    <div class="acolor">
+                        <div class="subHeading">Additional Color 3</div>
+                        <div class="colorSection">
+                            <span class="colorPicker" id="additional3"></span>
+                            <input class="selectedColor" type="text" maxlength="7" id="additional3Input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dic class="column" id="tabContent_2">
+            <div class="templates">
+                <div class="Corporate-1page" onclick="changeTemplate(this, 'Corporate-1page')">
+                    <img src="./assets/bg/Corporate1.svg">
+                    Corporate <small class="icon1"><span></span>1</small>
+                </div>
+                <div class="Tech-1page" onclick="changeTemplate(this, 'Tech-1page')">
+                    <img src="./assets/bg/Tech1.svg">
+                    Tech <small class="icon1"><span></span>1</small>
+                </div>
+                <div class="Corporate-40page" onclick="changeTemplate(this, 'Corporate-40page')">
+                    <img src="./assets/bg/Corporate2.svg">
+                    Corporate <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Tech-40page" onclick="changeTemplate(this, 'Tech-40page')">
+                    <img src="./assets/bg/Tech2.svg">
+                    Tech <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Contemporary-40page" onclick="changeTemplate(this, 'Contemporary-40page')">
+                    <img src="./assets/bg/Contemporary.svg">
+                    Contemporary <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Signature-40page" onclick="changeTemplate(this, 'Signature-40page')">
+                    <img src="./assets/bg/Signature.svg">
+                    Signature <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Urban-40page" onclick="changeTemplate(this, 'Urban-40page')">
+                    <img src="./assets/bg/Urban.svg">
+                    Urban <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Swiss-40page" onclick="changeTemplate(this, 'Swiss-40page')">
+                    <img src="./assets/bg/Swiss.svg">
+                    Swiss <small class="icon100"><span></span>40</small>
+                </div>
+                <div class="Corporate-100page" onclick="changeTemplate(this, 'Corporate-100page')">
+                    <img src="./assets/bg/Corporate3.svg">
+                    Corporate <small class="icon100"><span></span>100</small>
+                </div>
+                <div class="Tech-100page" onclick="changeTemplate(this, 'Tech-100page')">
+                    <img src="./assets/bg/Tech3.svg">
+                    Tech <small class="icon100"><span></span>100</small>
+                </div>
+            </div>
+        </dic>
+    </div>
+    <button class="update" onclick="updateData()">
+        <span>
+            <img src="assets/apply.svg" height="13">
+            Apply Changes &nbsp; &nbsp;
+        </span>
+    </button>
+    <button class="generate" onclick="generateNew()">
+        <span>
+            <img src="assets/generate.svg" height="15">
+            Generate &nbsp; &nbsp; &nbsp;
+        </span>
+    </button>
+    <div class="footer">
+        <div class="row">
+            <span class="center">
+                <strong> AKRIVI Guideit&trade; V1.1</strong> Having issues? Visit the <a href="javascript:void(0)"
+                    onclick="supportLink()">Help
+                    Centre</a>.
+            </span>
+        </div>
+        <div class="row">
+            <span class="center">
+                &copy; 2026 AKRIVI LTD. All rights reserved. <br />
+                Unauthorized copying, tampering or distribution is prohibited.
+            </span>
+        </div>
+    </div>
+  </div>
+
+
+  <div id="activationTrial" style="display: none;">
+
+      <div class="center" style="text-align: center; margin-top: 38px; margin-bottom: 20px;">
+          <img src="assets/logo.png" height="20" alt="Logo">
+      </div>
+      <div class="license-text">License key</div>
+      <input type="text" id="productKey2" placeholder="Enter your license key">
+      <button id="Activate" style="display: block; margin: 0 auto; margin-top: 10px;" onclick="submitProductKeyTrial()">Activate license</button>
+      <!-- <div class="logo-text" style="display: block; margin: 0 auto; margin-top: 15px;">Trial period expired.</div> -->
+      <div id="support" class="support" ><a href="#" onclick="openSignPage()">Retrieve your license</a></div>
+      <!-- <div id="info4" class="info"  style="display: block; margin: 0 auto; margin-top: 15px;" >Buy a license key - <a href="#" onclick="openBuyPage()">https://gridit.onfastspring.com/grid-it-standard</a></div>
+      <div id="info5" class="info"  style="display: block; margin: 0 auto; margin-top: 15px;" >Retrieve your license key - <a href="#" onclick="openSignPage()">https://gridit.onfastspring.com/account</a></div> -->
+      <div class="buy-help">
+        <div class="buy-container">
+          <button class="buy-license-btn" onclick="openBuyPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="84" height="14" viewBox="0 0 84 14">
+              <g id="Group_178983" transform="translate(-29 -212)">
+                <text id="Text" transform="translate(77 223)" fill="#ebebeb" font-size="10"
+                      font-family="SegoeUI-Bold, Segoe UI" font-weight="700">
+                  <tspan x="-35.676" y="0">Buy license key</tspan>
+                </text>
+                <g id="Icon" transform="translate(29 213)">
+                  <g id="Group_628" transform="translate(1 0.002)">
+                    <path id="Path_941" d="M10.688,5H8.813a.323.323,0,0,0-.312.333V6a.323.323,0,0,0,.313.333H9.75v5.333H2.25V6.333h.938A.323.323,0,0,0,3.5,6V5.333A.323.323,0,0,0,3.188,5H1.312A.323.323,0,0,0,1,5.333v7.333A.323.323,0,0,0,1.312,13h9.375A.323.323,0,0,0,11,12.667V5.333A.323.323,0,0,0,10.688,5Z" transform="translate(-1 -2.002)" fill="#ebebeb"/>
+                    <path id="Path_942" d="M5.2,4H6.5V9.5c0,.276.112.5.25.5h.5c.138,0,.25-.224.25-.5V4H8.8c.11,0,.2-.179.2-.4a.662.662,0,0,0-.05-.264L7.087.073c-.049-.1-.126-.1-.175,0L5.05,3.334A.663.663,0,0,0,5,3.6c0,.221.09.4.2.4Z" transform="translate(-2 -0.002)" fill="#ebebeb"/>
+                  </g>
+                  <rect width="12" height="12" fill="rgba(255,0,255,0)" opacity="0"/>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <div class="help-container">
+          <button class="help-btn" onclick="openSupportPage()">
+            <svg id="Decorative_icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+              <rect width="14" height="14" fill="#8d8d8d" opacity="0"/>
+              <g id="Icon">
+                <rect width="14" height="14" fill="#8d8d8d" opacity="0"/>
+                <path d="M7.834,10.033a.7.7,0,0,1-.747.771.712.712,0,0,1-.748-.771.748.748,0,0,1,1.495-.022Q7.834,10.022,7.834,10.033ZM6.982,3.176a3.53,3.53,0,0,0-1.728.41c-.045.024-.045.07-.045.117V4.84a.057.057,0,0,0,.091.046A2.823,2.823,0,0,1,6.732,4.5c.693,0,.966.293.966.714,0,.363-.216.609-.591,1-.545.563-.875.913-.875,1.464a1.307,1.307,0,0,0,.273.808.187.187,0,0,0,.148.047h.989a.05.05,0,0,0,.045-.082A1.263,1.263,0,0,1,7.5,7.8c0-.351.421-.737.864-1.171A2.093,2.093,0,0,0,9.1,5.016,1.869,1.869,0,0,0,6.982,3.176ZM13.5,7A6.5,6.5,0,1,1,7,.5H7A6.5,6.5,0,0,1,13.5,7ZM12.1,7A5.1,5.1,0,1,0,7,12.1H7A5.1,5.1,0,0,0,12.1,7Z" fill="#8d8d8d"/>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+  </div>
+
+
+  <div id="PKeyExpired" style="display: none;">
+    <div id="Expired" class="Expired" style="display: block; margin-top: 15px; ">The extension did not verify the product key or your product key has expired.</div>
+    <div id="Expired" class="Expired" style="display: block; margin-top: 5px; ">In case you recently extended your product key or want to repeat verification, please click on Reverify.</div>
+    <button id="Reverify" style="display: block; margin: 0 auto; margin-top: 10px;" onclick="PromptUserToReverify()">Reverify</button>
+
+    <div id="info6" class="info"  style="display: block; margin: 0 auto; margin-top: 15px;" >Help center - Reverify Issue solution <br><a href="#" onclick="openHelpReverify()">Help center</a></div>
+
+  </div>
+
+
+
+  <div class="modal-overlay" id="messageDeactivate"  style="display: none;">
+      <div class="modal-content">
+          <p>Are you sure you want to deactivate your product key? This action will deactivate license on this device but will allow you to use the product key on a different device. Please confirm your decision.</p>
+          <div class="buttons">
+              <button id="okButton" class="modal-button">OK</button>
+              <button id="cancelButton" class="modal-button">Cancel</button>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="modal-overlay" id="messageUninstall"  style="display: none;">
+      <div class="modal-content">
+          <p>Are you sure you want to uninstall this extension? This action will remove the extension from your device and will require a restart of Adobe Illustrator to complete the uninstallation process. Please confirm your decision.</p>
+          <div class="buttons">
+              <button id="okButtonUninstall"  class="modal-button">OK</button>
+              <button id="cancelButtonUninstall"  class="modal-button">Cancel</button>
+          </div>
+      </div>
+  </div>
+
+
+</body>
+
+</html>
